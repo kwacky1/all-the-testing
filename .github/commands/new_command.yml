@@ -1,23 +1,25 @@
 ---
-trigger: my_command # <-- 👋 pick a trigger
-title: My command   # <-- 👋 pick a title
-# Works everywhere by default. Uncomment to limit it to certain surfaces.
-# surfaces:
-#   - issue
+trigger: weekly_sync # <-- 👋 pick a trigger
+title: Weekly Sync   # <-- 👋 pick a title
+surfaces:
+  - issue
 #   - pull_request
 #   - discussions
-description: This is an example
+description: Submit your weekly sync update
 
 # Each command has one or more steps. You can add up to 25 steps.
 steps:
   # This displays a menu, similar to typing `@`.
   - type: menu
-    id: some_options
-    label: Options
+    id: weekly_feels
+    label: How have you been this week?
     options:
-      - Item 1
-      - Item 2
-      - Item 3
+      - :smiley:
+      - :slightly_smiling_face:
+      - :neutral_face:
+      - :slightly_frowning_face:
+      - :frowning_face:
+
   # This displays a form with a dropdown, text input, and markdown editor.
   - type: form
     style: modal
