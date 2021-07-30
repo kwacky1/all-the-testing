@@ -14,11 +14,11 @@ steps:
     id: weekly_feels
     label: How have you been this week?
     options:
-      - :smiley:
-      - :slightly_smiling_face:
-      - :neutral_face:
-      - :slightly_frowning_face:
-      - :frowning_face:
+      - ":smiley:"
+      - ":slightly_smiling_face:"
+      - ":neutral_face:"
+      - ":slightly_frowning_face:"
+      - ":frowning_face:"
 
   # This displays a form with a dropdown, text input, and markdown editor.
   - type: form
