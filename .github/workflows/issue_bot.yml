@@ -9,7 +9,7 @@ jobs:
     steps:
     
     - name: issue-bot
-      uses: imjohnbo/issue-bot@fix/2.4.2
+      uses: imjohnbo/issue-bot@v3
       with:
         close-previous: true
         template: ".github/ISSUE_TEMPLATE/this-week.md" # assignees, labels will be overridden if present in YAML header
