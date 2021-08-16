@@ -12,13 +12,17 @@ jobs:
       id: extract
       with:
         path: .github/ISSUE_TEMPLATE/this-week.md
+        
+    - name: get date
+      id: get_date
+      run: echo ::set-output name=date::$(TZ='Australia/Brisbane' date "+%V")      
 
     # Create new issue with assignees, labels, title, and body
     - uses: imjohnbo/issue-bot@v3
       with:
         assignees: ${{ steps.extract.outputs.assignees }}
         labels: ${{ steps.extract.outputs.labels }}
-        title: ${{ steps.extract.outputs.title }}
+        title: Team Meeting - Week ${{ steps.get_date.outputs.date }}
         body: ${{ steps.extract.outputs.body }}
         close-previous: true
         pinned: true
