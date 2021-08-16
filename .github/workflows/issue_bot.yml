@@ -8,17 +8,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     
-    # Repo code checkout required if `template` is used
-    - name: Checkout
-      uses: actions/checkout@v2.3.4
-    - name: get date
-      id: get_date
-      run: echo ::set-output name=date::$(TZ='Australia/Brisbane' date "+%V, %Y")      
     - name: issue-bot
       uses: imjohnbo/issue-bot@fix/2.4.2
       with:
         close-previous: true
         template: ".github/ISSUE_TEMPLATE/this-week.md" # assignees, labels will be overridden if present in YAML header
-        title: "Week ${{ steps.get_date.outputs.date }}" 
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
