@@ -8,10 +8,19 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     
-    - name: issue-bot
-      uses: imjohnbo/issue-bot@v3
+    - uses: imjohnbo/extract-issue-template-fields@v1
+      id: extract
       with:
+        path: .github/ISSUE_TEMPLATE/this-week.md
+
+    # Create new issue with assignees, labels, title, and body
+    - uses: imjohnbo/issue-bot@v3
+      with:
+        assignees: ${{ steps.extract.outputs.assignees }}
+        labels: ${{ steps.extract.outputs.labels }}
+        title: ${{ steps.extract.outputs.title }}
+        body: ${{ steps.extract.outputs.body }}
         close-previous: true
-        template: ".github/ISSUE_TEMPLATE/this-week.md" # assignees, labels will be overridden if present in YAML header
+        pinned: true
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
