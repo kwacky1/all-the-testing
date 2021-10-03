@@ -21,7 +21,7 @@ jobs:
           graphql_script="$(echo ${graphql_script//\"/\\\"})"
           echo $graphql_script
           curl -ksS \
-          -H 'authorization: Bearer ${{ secrets.USER_TOKEN }}' \
+          -H 'authorization: Bearer ${{ secrets.GITHUB_TOKEN }}' \
           -H 'Content-Type: application/json' \
           -d "{ \"query\": \"$graphql_script\"}" \
           $graphql_endpoint | jq .
