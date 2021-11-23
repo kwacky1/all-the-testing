@@ -12,8 +12,8 @@ jobs:
           graphql_script: |
                         mutation { 
                            createDiscussion(input: {repositoryId: "MDEwOlJlcG9zaXRvcnkxNTI2NjY4MDA=", categoryId: "DIC_kwDOCRmCsM4B-TaV", body: "
-                           The multiline body
-                           with line breaks.", title: "The title"}) { 
+                           The multiline body/n
+                           with line\n breaks.", title: "The title"}) { 
                                   discussion { 
                                     id 
                                   } 
