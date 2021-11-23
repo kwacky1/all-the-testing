@@ -8,7 +8,7 @@ jobs:
     steps:
       - name: get last month
         id: month
-        run: echo ::set-output name==name::$(date --date="$(date +%Y-%m-15) -1 month" +'%B %Y')
+        run: echo ::set-output name==title::$(date --date="$(date +%Y-%m-15) -1 month" +'%B %Y')
       - name: Create Discussion
         env: 
           graphql_endpoint: "https://api.github.com/graphql"
@@ -16,7 +16,7 @@ jobs:
                         mutation { 
                            createDiscussion(input: {repositoryId: "MDEwOlJlcG9zaXRvcnkxNTI2NjY4MDA=", categoryId: "DIC_kwDOCRmCsM4B-TaV", body: "
                            The multiline body/n
-                           with line\n breaks.", title: "${{steps.month.outputs.date}}"}) { 
+                           with line\n breaks.", title: "${{steps.month.outputs.title}}"}) { 
                                   discussion { 
                                     id 
                                   } 
