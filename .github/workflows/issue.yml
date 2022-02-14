@@ -9,7 +9,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2.3.4
-      - uses: actions/github-script@v4.1.1
+      - uses: actions/github-script@v6
         with:
           script: |
             console.log(context.issue.number)
