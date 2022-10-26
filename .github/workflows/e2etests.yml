@@ -1,13 +1,11 @@
 name: Cron Job for e2e tests
 on:
     workflow_dispatch:
-    schedule:
-        - cron: "* 5,11,17,23 * * *"
 
 jobs:
     testcron:
         name: Run e2e tests
-        runs-on: self-hosted
+        runs-on: ubuntu-latest
         steps:
             - name: Clean Up Runner
               run: |
