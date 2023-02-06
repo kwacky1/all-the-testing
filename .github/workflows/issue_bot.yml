@@ -8,17 +8,23 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     
-    # Repo code checkout required if `template` is used
-    - name: Checkout
-      uses: actions/checkout@v2
+    - uses: imjohnbo/extract-issue-template-fields@v1
+      id: extract
+      with:
+        path: .github/ISSUE_TEMPLATE/this-week.md
+        
     - name: get date
       id: get_date
-      run: echo ::set-output name=date::$(TZ='Australia/Brisbane' date "+%V, %Y")      
-    - name: issue-bot
-      uses: imjohnbo/issue-bot@fix/2.4.2
+      run: echo ::set-output name=date::$(TZ='Australia/Brisbane' date "+%V")      
+
+    # Create new issue with assignees, labels, title, and body
+    - uses: imjohnbo/issue-bot@v3
       with:
+        assignees: ${{ steps.extract.outputs.assignees }}
+        labels: ${{ steps.extract.outputs.labels }}
+        title: Team Meeting - Week ${{ steps.get_date.outputs.date }}
+        body: ${{ steps.extract.outputs.body }}
         close-previous: true
-        template: ".github/ISSUE_TEMPLATE/this-week.md" # assignees, labels will be overridden if present in YAML header
-        title: "Week ${{ steps.get_date.outputs.date }}" 
+        pinned: true
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

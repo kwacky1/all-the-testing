@@ -1,0 +1,33 @@
+name: Create discussion
+
+on:
+  workflow_dispatch:
+jobs:
+  createDiscussion:
+    runs-on: ubuntu-latest
+    steps:
+      - name: get last month
+        id: month
+        run: echo ::set-output name==title::$(date --date="$(date +%Y-%m-15) -1 month" +'%B %Y')
+      - name: Create Discussion
+        env: 
+          graphql_endpoint: "https://api.github.com/graphql"
+          graphql_script: |
+                        mutation { 
+                           createDiscussion(input: {repositoryId: "MDEwOlJlcG9zaXRvcnkxNTI2NjY4MDA=", categoryId: "DIC_kwDOCRmCsM4B-TaV", body: "
+                           The multiline body/n
+                           with line\n breaks.\n\n
+                           CC: @kwacky1", title: "${{steps.month.outputs.title}}"}) { 
+                                  discussion { 
+                                    id 
+                                  } 
+                                } 
+                              }        
+        run: |
+          graphql_script="$(echo ${graphql_script//\"/\\\"})"
+          echo $graphql_script
+          curl -ksS \
+          -H 'authorization: Bearer ${{ secrets.GITHUB_TOKEN }}' \
+          -H 'Content-Type: application/json' \
+          -d "{ \"query\": \"$graphql_script\"}" \
+          $graphql_endpoint | jq .

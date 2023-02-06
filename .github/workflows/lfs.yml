@@ -1,0 +1,15 @@
+name: LFS
+on:
+  workflow_dispatch:
+  
+jobs:
+  lfs:
+    name: Weekly Tracker
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3.3.0
+        with:
+          lfs: 'true'
+        env:
+          GIT_TRACE: 1
+          GIT_CURL_VERBOSE: 1

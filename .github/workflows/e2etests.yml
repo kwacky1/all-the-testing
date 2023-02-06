@@ -1,0 +1,46 @@
+name: Cron Job for e2e tests
+on:
+    workflow_dispatch:
+
+jobs:
+    testcron:
+        name: Run e2e tests
+        runs-on: ubuntu-latest
+        steps:
+            - name: Clean Up Runner
+              run: |
+                  echo "Cleaning up previous run. Need to do this Until DevOps fixes this issue."
+                  rm -rf $GITHUB_WORKSPACE/*
+            - name: Checkout Core Monorepo
+              uses: actions/checkout@v3.3.0
+              with:
+                  path: monorepo
+#            - name: Set up Showcase
+#              run: |
+#                  echo "Copying showcase app folder to the root and purging the monorepo folder"
+#                  cp -r monorepo/applications/showcase $GITHUB_WORKSPACE
+#                  rm -rf monorepo
+            - uses: actions/setup-node@v3.6.0
+              with:
+                  node-version: 14
+                  registry-url: http://infamvn.informatica.com:8081/nexus/content/groups/npmJs_GRP/
+            - name: Install Yarn
+              run: npm i -g yarn
+              env:
+                  NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+            - name: Install dependencies
+              working-directory: showcase
+              run: yarn
+              env:
+                  NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+            - name: Build
+              working-directory: showcase
+              run: yarn build
+            - name: Test
+              working-directory: showcase
+              run: yarn test:e2e
+            - name: Clean Up Runner
+              if: always()
+              run: |
+                  echo "Cleaning up previous run. Need to do this Until DevOps fixes this issue."
+                  rm -rf $GITHUB_WORKSPACE/*
