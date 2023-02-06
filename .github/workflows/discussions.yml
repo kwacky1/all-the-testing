@@ -16,7 +16,8 @@ jobs:
                         mutation { 
                            createDiscussion(input: {repositoryId: "MDEwOlJlcG9zaXRvcnkxNTI2NjY4MDA=", categoryId: "DIC_kwDOCRmCsM4B-TaV", body: "
                            The multiline body/n
-                           with line\n breaks.", title: "${{steps.month.outputs.title}}"}) { 
+                           with line\n breaks.\n\n
+                           CC: @kwacky1", title: "${{steps.month.outputs.title}}"}) { 
                                   discussion { 
                                     id 
                                   } 
