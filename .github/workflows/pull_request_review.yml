@@ -6,4 +6,4 @@ jobs:
   state:
     runs-on: ubuntu-latest
     steps:
-      - run: echo "This PR is {{github.event.review.state}}"
+      - run: echo "This PR is ${{github.event.review.state}}"
