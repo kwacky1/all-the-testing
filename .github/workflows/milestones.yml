@@ -1,0 +1,25 @@
+name: Update Milestones
+
+on:
+  schedule:
+    - cron: '0 20 * * 0' # 8pm Sunday
+    - cron: '0 20 28 * *' # 8pm 28th of every month
+    - cron: '0 20 29 * *' # 8pm 29th of every month
+    - cron: '0 20 30 * *' # 8pm 30th of every month
+    - cron: '0 20 31 * *' # 8pm 31st of every month
+  workflow_dispatch:
+    inputs:
+      interval:
+        description: 'weekly or monthly'
+        required: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: checkout
+        uses: actions/checkout@v2.3.2
+      - name: update milestones
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        uses: ./.github/actions/milestones
