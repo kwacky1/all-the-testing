@@ -12,7 +12,7 @@ jobs:
                   echo "Cleaning up previous run. Need to do this Until DevOps fixes this issue."
                   rm -rf $GITHUB_WORKSPACE/*
             - name: Checkout Core Monorepo
-              uses: actions/checkout@v3.3.0
+              uses: actions/checkout@v3.4.0
               with:
                   path: monorepo
 #            - name: Set up Showcase
