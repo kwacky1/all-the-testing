@@ -60,4 +60,4 @@ jobs:
       env:
         TOX_SKIP_ENV: py.*
     - name: Upload coverage to Codecov
-      uses: codecov/codecov-action@v3.1.2
+      uses: codecov/codecov-action@v3.1.3
