@@ -20,7 +20,7 @@ jobs:
 #                  echo "Copying showcase app folder to the root and purging the monorepo folder"
 #                  cp -r monorepo/applications/showcase $GITHUB_WORKSPACE
 #                  rm -rf monorepo
-            - uses: actions/setup-node@v3.7.0
+            - uses: actions/setup-node@v3.8.0
               with:
                   node-version: 14
                   registry-url: http://infamvn.informatica.com:8081/nexus/content/groups/npmJs_GRP/
