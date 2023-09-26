@@ -7,4 +7,4 @@ Multi action CI power
 
 Make the same change in two PRS
 
-Does this change disable auto merge?
+She'll be pineapples
