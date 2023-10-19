@@ -1,0 +1,27 @@
+trigger: weekly_sync
+title: Weekly Sync
+description: Form for the weekly team meeting
+steps:
+- type: form
+  style: embedded
+  body:
+  - type: dropdown
+    attributes:
+      id: checkin
+      label: How have you been this week?
+      options:
+      - label: 😃 Smiling
+        value: 😃
+      - label: 🙂 Slightly Smiling
+        value: 🙂
+      - label: 😐 Neutral
+        value: 😐
+      - label: 🙁 Slightly Frowning
+        value: 🙁
+      - label: ☹️ Frowning
+        value: ☹️ 
+- type: fill
+  template: |-
+    **How have you been this week?**
+
+    {{ data.checkin }}
