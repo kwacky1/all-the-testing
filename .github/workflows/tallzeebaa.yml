@@ -17,9 +17,9 @@ jobs:
           ls -la
           git_version=$(git --version)
           echo "Git version: $git_version"
-          git tag -l > git_tags.txt
+          git tag -l | tee git_tags.txt
           echo "Git tags:"
           cat git_tags.txt
-          git branch > git_branches.txt
+          git branch | tee git_branches.txt
           echo "Git branches:"
           cat git_branches.txt
