@@ -3,7 +3,7 @@ name: Tallzeebaa Testing
 on: workflow_dispatch
 
 jobs:
-  get-rate-limit:
+  tallzeebaa-testing:
     runs-on: ubuntu-latest
     permissions:
       issues: write
@@ -16,8 +16,8 @@ jobs:
           echo "Current directory is $(pwd)"
           ls -la
           test=$(git --version)
-          echo $test
+          echo "$test"
           test2=$(git tag -l)
-          echo $test2
+          echo "$test2"
           test3=$(git branch)
-          echo $test3        
+          echo "$test3"
