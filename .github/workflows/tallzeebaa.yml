@@ -15,9 +15,9 @@ jobs:
           cd ${{ github.workspace }}
           echo "Current directory is $(pwd)"
           ls -la
-          test=$(git --version)
-          echo "$test"
-          test2=$(git tag -l)
-          echo "$test2"
-          test3=$(git branch)
-          echo "$test3"
+          git_version=$(git --version)
+          echo "Git version: $git_version"
+          git_tags=$(git tag -l)
+          echo "Git tags: $git_tags"
+          git_branches=$(git branch)
+          echo "Git branches: $git_branches"
