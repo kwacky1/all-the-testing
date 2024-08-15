@@ -8,6 +8,8 @@ jobs:
     permissions:
       issues: write
     steps:
+      - name: checkout
+        uses: actions/checkout@v4.1.7
       - name: Ticket 2938514
         run: |
           cd ${{ github.workspace }}
