@@ -1,0 +1,21 @@
+name: Tallzeebaa Testing
+
+on: workflow_dispatch
+
+jobs:
+  get-rate-limit:
+    runs-on: ubuntu-latest
+    permissions:
+      issues: write
+    steps:
+      - name: Ticket 2938514
+        run: |
+          cd ${{ github.workspace }}
+          echo "Current directory is $(pwd)"
+          ls -la
+          test=$(git --version)
+          echo $test
+          test2=$(git tag -l)
+          echo $test2
+          test3=$(git branch)
+          echo $test3        
